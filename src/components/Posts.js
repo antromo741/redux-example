@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
 
 class Posts extends Component {
+    //lifecyclemethod
+    
+    componentWillMount() {
+        fetch('https://jsonplaceholder.typicode.com/posts')
+        .then( res => res.json())
+        .then(data => console.log(data));
+    }
+
+
     render() {
         return (
             <div>
