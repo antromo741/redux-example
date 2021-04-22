@@ -2,20 +2,8 @@ import React, { Component } from 'react'
 
 class Posts extends Component {
     
-    constructor(props) {
-        super(props);
-        this.state = {
-            posts: []
-        }
-
-    }
-    //lifecyclemethod, gives me data from api
-    // think about how to turn post items into a pokemon card
-    componentWillMount() {
-        fetch('https://jsonplaceholder.typicode.com/posts')
-        .then( res => res.json())
-        .then(data => this.setState({ posts: data }));
-    }
+    //No longer need component will mount or constructor, we are getting our state from redux, the store
+    
     render() {
 
         const postItems = this.state.posts.map(post => (
