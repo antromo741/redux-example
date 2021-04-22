@@ -9,6 +9,13 @@ class Posts extends Component {
     componentWillMount() {
         this.props.fetchPosts();
     }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.newPosts) {
+            this.props.posts.unshift(nextProps.newPosts);
+        }
+    }
+
     render() {
 
         const postItems = this.props.posts.map(post => (
@@ -28,13 +35,15 @@ class Posts extends Component {
 }
 Posts.propTypes = {
     fetchPosts: PropTypes.func.isRequired,
-    posts: PropTypes.array.isRequired
+    posts: PropTypes.array.isRequired,
+    newPosts: PropTypes.object
 };
 
 
 //Using posts because in the root reducer we declare posts
 const mapStateToProps = state => ({
-    posts: state.posts.items
-})
+    posts: state.posts.items,
+    newPosts: state.posts.item
+});
 
 export default connect(mapStateToProps, {fetchPosts})(Posts)
